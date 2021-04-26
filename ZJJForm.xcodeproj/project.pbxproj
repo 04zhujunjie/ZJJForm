@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF63A1E5262972F800731B7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A1E4262972F800731B7F /* AppDelegate.swift */; };
+		FF63A1E7262972F800731B7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A1E6262972F800731B7F /* SceneDelegate.swift */; };
+		FF63A1E9262972F800731B7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A1E8262972F800731B7F /* ViewController.swift */; };
+		FF63A1EC262972F800731B7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF63A1EA262972F800731B7F /* Main.storyboard */; };
+		FF63A1EE262972FB00731B7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF63A1ED262972FB00731B7F /* Assets.xcassets */; };
+		FF63A1F1262972FB00731B7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF63A1EF262972FB00731B7F /* LaunchScreen.storyboard */; };
+		FF63A1FB2629734700731B7F /* ZJJFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A1FA2629734700731B7F /* ZJJFormModel.swift */; };
+		FF63A1FF262974A000731B7F /* ZJJFormEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A1FE262974A000731B7F /* ZJJFormEnum.swift */; };
+		FF63A207262989DC00731B7F /* ZJJFormProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A206262989DC00731B7F /* ZJJFormProtocol.swift */; };
+		FF63A20C262D2F9A00731B7F /* ZJJFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A20B262D2F9A00731B7F /* ZJJFormTableView.swift */; };
+		FF63A211262D51AC00731B7F /* ZJJFormValueOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A20F262D51AC00731B7F /* ZJJFormValueOneCell.swift */; };
+		FF63A212262D51AC00731B7F /* ZJJFormValueOneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF63A210262D51AC00731B7F /* ZJJFormValueOneCell.xib */; };
+		FF63A219262D560100731B7F /* form_gd__icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF63A216262D560000731B7F /* form_gd__icon@3x.png */; };
+		FF63A21A262D560100731B7F /* form_gd__icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FF63A217262D560000731B7F /* form_gd__icon.png */; };
+		FF63A21B262D560100731B7F /* form_gd__icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF63A218262D560000731B7F /* form_gd__icon@2x.png */; };
+		FF63A224262D83B400731B7F /* ZJJFormInputOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A222262D83B400731B7F /* ZJJFormInputOneCell.swift */; };
+		FF63A225262D83B400731B7F /* ZJJFormInputOneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF63A223262D83B400731B7F /* ZJJFormInputOneCell.xib */; };
+		FF63A229262D83ED00731B7F /* ZJJFormInputTwoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A227262D83ED00731B7F /* ZJJFormInputTwoCell.swift */; };
+		FF63A22A262D83ED00731B7F /* ZJJFormInputTwoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF63A228262D83ED00731B7F /* ZJJFormInputTwoCell.xib */; };
+		FF63A22D262D845300731B7F /* ZJJFormConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A22C262D845300731B7F /* ZJJFormConstant.swift */; };
+		FF63A232262D855700731B7F /* ZJJFormValueTwoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A230262D855700731B7F /* ZJJFormValueTwoCell.swift */; };
+		FF63A233262D855700731B7F /* ZJJFormValueTwoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF63A231262D855700731B7F /* ZJJFormValueTwoCell.xib */; };
+		FF63A236262FC31700731B7F /* ZJJFormBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A235262FC31600731B7F /* ZJJFormBaseCell.swift */; };
+		FF63A239262FC4CC00731B7F /* ZJJFormInputBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A238262FC4CC00731B7F /* ZJJFormInputBaseCell.swift */; };
+		FF63A241263261A200731B7F /* ZJJFormExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A240263261A200731B7F /* ZJJFormExtension.swift */; };
+		FF63A2452632951C00731B7F /* ZJJFormTextFieldBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A2442632951C00731B7F /* ZJJFormTextFieldBaseCell.swift */; };
+		FF63A2492632994100731B7F /* ZJJFormTextViewBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A2482632994100731B7F /* ZJJFormTextViewBaseCell.swift */; };
+		FF63A24D26329F8F00731B7F /* ZJJFormTextViewTwoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A24B26329F8F00731B7F /* ZJJFormTextViewTwoCell.swift */; };
+		FF63A24E26329F8F00731B7F /* ZJJFormTextViewTwoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF63A24C26329F8F00731B7F /* ZJJFormTextViewTwoCell.xib */; };
+		FFB481932635060E0062AB31 /* ZJJFormTextViewOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB481912635060E0062AB31 /* ZJJFormTextViewOneCell.swift */; };
+		FFB481942635060E0062AB31 /* ZJJFormTextViewOneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFB481922635060E0062AB31 /* ZJJFormTextViewOneCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FF63A1E1262972F800731B7F /* ZJJForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJJForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF63A1E4262972F800731B7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FF63A1E6262972F800731B7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FF63A1E8262972F800731B7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FF63A1EB262972F800731B7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FF63A1ED262972FB00731B7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF63A1F0262972FB00731B7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF63A1F2262972FB00731B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF63A1FA2629734700731B7F /* ZJJFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormModel.swift; sourceTree = "<group>"; };
+		FF63A1FE262974A000731B7F /* ZJJFormEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormEnum.swift; sourceTree = "<group>"; };
+		FF63A206262989DC00731B7F /* ZJJFormProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormProtocol.swift; sourceTree = "<group>"; };
+		FF63A20B262D2F9A00731B7F /* ZJJFormTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormTableView.swift; sourceTree = "<group>"; };
+		FF63A20F262D51AC00731B7F /* ZJJFormValueOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormValueOneCell.swift; sourceTree = "<group>"; };
+		FF63A210262D51AC00731B7F /* ZJJFormValueOneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJJFormValueOneCell.xib; sourceTree = "<group>"; };
+		FF63A216262D560000731B7F /* form_gd__icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form_gd__icon@3x.png"; sourceTree = "<group>"; };
+		FF63A217262D560000731B7F /* form_gd__icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = form_gd__icon.png; sourceTree = "<group>"; };
+		FF63A218262D560000731B7F /* form_gd__icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "form_gd__icon@2x.png"; sourceTree = "<group>"; };
+		FF63A222262D83B400731B7F /* ZJJFormInputOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormInputOneCell.swift; sourceTree = "<group>"; };
+		FF63A223262D83B400731B7F /* ZJJFormInputOneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJJFormInputOneCell.xib; sourceTree = "<group>"; };
+		FF63A227262D83ED00731B7F /* ZJJFormInputTwoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormInputTwoCell.swift; sourceTree = "<group>"; };
+		FF63A228262D83ED00731B7F /* ZJJFormInputTwoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJJFormInputTwoCell.xib; sourceTree = "<group>"; };
+		FF63A22C262D845300731B7F /* ZJJFormConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormConstant.swift; sourceTree = "<group>"; };
+		FF63A230262D855700731B7F /* ZJJFormValueTwoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormValueTwoCell.swift; sourceTree = "<group>"; };
+		FF63A231262D855700731B7F /* ZJJFormValueTwoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJJFormValueTwoCell.xib; sourceTree = "<group>"; };
+		FF63A235262FC31600731B7F /* ZJJFormBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormBaseCell.swift; sourceTree = "<group>"; };
+		FF63A238262FC4CC00731B7F /* ZJJFormInputBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormInputBaseCell.swift; sourceTree = "<group>"; };
+		FF63A240263261A200731B7F /* ZJJFormExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormExtension.swift; sourceTree = "<group>"; };
+		FF63A2442632951C00731B7F /* ZJJFormTextFieldBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormTextFieldBaseCell.swift; sourceTree = "<group>"; };
+		FF63A2482632994100731B7F /* ZJJFormTextViewBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormTextViewBaseCell.swift; sourceTree = "<group>"; };
+		FF63A24B26329F8F00731B7F /* ZJJFormTextViewTwoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormTextViewTwoCell.swift; sourceTree = "<group>"; };
+		FF63A24C26329F8F00731B7F /* ZJJFormTextViewTwoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJJFormTextViewTwoCell.xib; sourceTree = "<group>"; };
+		FFB481912635060E0062AB31 /* ZJJFormTextViewOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZJJFormTextViewOneCell.swift; sourceTree = "<group>"; };
+		FFB481922635060E0062AB31 /* ZJJFormTextViewOneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZJJFormTextViewOneCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF63A1DE262972F800731B7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF63A1D8262972F800731B7F = {
+			isa = PBXGroup;
+			children = (
+				FF63A1E3262972F800731B7F /* ZJJForm */,
+				FF63A1E2262972F800731B7F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF63A1E2262972F800731B7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF63A1E1262972F800731B7F /* ZJJForm.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF63A1E3262972F800731B7F /* ZJJForm */ = {
+			isa = PBXGroup;
+			children = (
+				FF63A1F92629730800731B7F /* ZJJForm */,
+				FF63A1E4262972F800731B7F /* AppDelegate.swift */,
+				FF63A1E6262972F800731B7F /* SceneDelegate.swift */,
+				FF63A1E8262972F800731B7F /* ViewController.swift */,
+				FF63A1EA262972F800731B7F /* Main.storyboard */,
+				FF63A1ED262972FB00731B7F /* Assets.xcassets */,
+				FF63A1EF262972FB00731B7F /* LaunchScreen.storyboard */,
+				FF63A1F2262972FB00731B7F /* Info.plist */,
+			);
+			path = ZJJForm;
+			sourceTree = "<group>";
+		};
+		FF63A1F92629730800731B7F /* ZJJForm */ = {
+			isa = PBXGroup;
+			children = (
+				FF63A23F2632610700731B7F /* Extension */,
+				FF63A214262D557900731B7F /* Resource */,
+				FF63A209262D2F4100731B7F /* Cell */,
+				FF63A1FA2629734700731B7F /* ZJJFormModel.swift */,
+				FF63A1FE262974A000731B7F /* ZJJFormEnum.swift */,
+				FF63A206262989DC00731B7F /* ZJJFormProtocol.swift */,
+				FF63A22C262D845300731B7F /* ZJJFormConstant.swift */,
+				FF63A20B262D2F9A00731B7F /* ZJJFormTableView.swift */,
+			);
+			path = ZJJForm;
+			sourceTree = "<group>";
+		};
+		FF63A209262D2F4100731B7F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FF63A20F262D51AC00731B7F /* ZJJFormValueOneCell.swift */,
+				FF63A210262D51AC00731B7F /* ZJJFormValueOneCell.xib */,
+				FF63A230262D855700731B7F /* ZJJFormValueTwoCell.swift */,
+				FF63A231262D855700731B7F /* ZJJFormValueTwoCell.xib */,
+				FF63A222262D83B400731B7F /* ZJJFormInputOneCell.swift */,
+				FF63A223262D83B400731B7F /* ZJJFormInputOneCell.xib */,
+				FF63A227262D83ED00731B7F /* ZJJFormInputTwoCell.swift */,
+				FF63A228262D83ED00731B7F /* ZJJFormInputTwoCell.xib */,
+				FF63A24B26329F8F00731B7F /* ZJJFormTextViewTwoCell.swift */,
+				FF63A24C26329F8F00731B7F /* ZJJFormTextViewTwoCell.xib */,
+				FFB481912635060E0062AB31 /* ZJJFormTextViewOneCell.swift */,
+				FFB481922635060E0062AB31 /* ZJJFormTextViewOneCell.xib */,
+				FF63A235262FC31600731B7F /* ZJJFormBaseCell.swift */,
+				FF63A238262FC4CC00731B7F /* ZJJFormInputBaseCell.swift */,
+				FF63A2442632951C00731B7F /* ZJJFormTextFieldBaseCell.swift */,
+				FF63A2482632994100731B7F /* ZJJFormTextViewBaseCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		FF63A214262D557900731B7F /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				FF63A217262D560000731B7F /* form_gd__icon.png */,
+				FF63A218262D560000731B7F /* form_gd__icon@2x.png */,
+				FF63A216262D560000731B7F /* form_gd__icon@3x.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		FF63A23F2632610700731B7F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				FF63A240263261A200731B7F /* ZJJFormExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF63A1E0262972F800731B7F /* ZJJForm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF63A1F5262972FB00731B7F /* Build configuration list for PBXNativeTarget "ZJJForm" */;
+			buildPhases = (
+				FF63A1DD262972F800731B7F /* Sources */,
+				FF63A1DE262972F800731B7F /* Frameworks */,
+				FF63A1DF262972F800731B7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZJJForm;
+			productName = ZJJForm;
+			productReference = FF63A1E1262972F800731B7F /* ZJJForm.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF63A1D9262972F800731B7F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					FF63A1E0262972F800731B7F = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = FF63A1DC262972F800731B7F /* Build configuration list for PBXProject "ZJJForm" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF63A1D8262972F800731B7F;
+			productRefGroup = FF63A1E2262972F800731B7F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF63A1E0262972F800731B7F /* ZJJForm */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF63A1DF262972F800731B7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF63A22A262D83ED00731B7F /* ZJJFormInputTwoCell.xib in Resources */,
+				FF63A1F1262972FB00731B7F /* LaunchScreen.storyboard in Resources */,
+				FF63A21B262D560100731B7F /* form_gd__icon@2x.png in Resources */,
+				FF63A233262D855700731B7F /* ZJJFormValueTwoCell.xib in Resources */,
+				FF63A21A262D560100731B7F /* form_gd__icon.png in Resources */,
+				FF63A212262D51AC00731B7F /* ZJJFormValueOneCell.xib in Resources */,
+				FF63A219262D560100731B7F /* form_gd__icon@3x.png in Resources */,
+				FF63A1EE262972FB00731B7F /* Assets.xcassets in Resources */,
+				FF63A1EC262972F800731B7F /* Main.storyboard in Resources */,
+				FF63A24E26329F8F00731B7F /* ZJJFormTextViewTwoCell.xib in Resources */,
+				FF63A225262D83B400731B7F /* ZJJFormInputOneCell.xib in Resources */,
+				FFB481942635060E0062AB31 /* ZJJFormTextViewOneCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF63A1DD262972F800731B7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF63A24D26329F8F00731B7F /* ZJJFormTextViewTwoCell.swift in Sources */,
+				FF63A2452632951C00731B7F /* ZJJFormTextFieldBaseCell.swift in Sources */,
+				FF63A229262D83ED00731B7F /* ZJJFormInputTwoCell.swift in Sources */,
+				FF63A1FB2629734700731B7F /* ZJJFormModel.swift in Sources */,
+				FF63A1E9262972F800731B7F /* ViewController.swift in Sources */,
+				FF63A2492632994100731B7F /* ZJJFormTextViewBaseCell.swift in Sources */,
+				FF63A239262FC4CC00731B7F /* ZJJFormInputBaseCell.swift in Sources */,
+				FF63A22D262D845300731B7F /* ZJJFormConstant.swift in Sources */,
+				FF63A207262989DC00731B7F /* ZJJFormProtocol.swift in Sources */,
+				FF63A224262D83B400731B7F /* ZJJFormInputOneCell.swift in Sources */,
+				FF63A1E5262972F800731B7F /* AppDelegate.swift in Sources */,
+				FF63A211262D51AC00731B7F /* ZJJFormValueOneCell.swift in Sources */,
+				FF63A1FF262974A000731B7F /* ZJJFormEnum.swift in Sources */,
+				FF63A241263261A200731B7F /* ZJJFormExtension.swift in Sources */,
+				FFB481932635060E0062AB31 /* ZJJFormTextViewOneCell.swift in Sources */,
+				FF63A236262FC31700731B7F /* ZJJFormBaseCell.swift in Sources */,
+				FF63A232262D855700731B7F /* ZJJFormValueTwoCell.swift in Sources */,
+				FF63A20C262D2F9A00731B7F /* ZJJFormTableView.swift in Sources */,
+				FF63A1E7262972F800731B7F /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FF63A1EA262972F800731B7F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF63A1EB262972F800731B7F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FF63A1EF262972FB00731B7F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FF63A1F0262972FB00731B7F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FF63A1F3262972FB00731B7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FF63A1F4262972FB00731B7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FF63A1F6262972FB00731B7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GG26W7FHYS;
+				INFOPLIST_FILE = ZJJForm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bw.zjjform;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		FF63A1F7262972FB00731B7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GG26W7FHYS;
+				INFOPLIST_FILE = ZJJForm/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bw.zjjform;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF63A1DC262972F800731B7F /* Build configuration list for PBXProject "ZJJForm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF63A1F3262972FB00731B7F /* Debug */,
+				FF63A1F4262972FB00731B7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF63A1F5262972FB00731B7F /* Build configuration list for PBXNativeTarget "ZJJForm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF63A1F6262972FB00731B7F /* Debug */,
+				FF63A1F7262972FB00731B7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF63A1D9262972F800731B7F /* Project object */;
+}

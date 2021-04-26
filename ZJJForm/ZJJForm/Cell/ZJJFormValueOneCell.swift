@@ -1,0 +1,55 @@
+//
+//  ZJJFormValueOneCell.swift
+//  ZJJForm
+//
+//  Created by weiqu on 2021/4/19.
+//
+
+import UIKit
+
+class ZJJFormValueOneCell: ZJJFormBaseCell {
+
+    @IBOutlet weak var keyLabel: UILabel!
+    
+    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var lineView: UIView!
+    
+    @IBOutlet weak var arrowImageView: UIImageView!
+    @IBOutlet weak var valueRightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var lineRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var lineLeftConstraint: NSLayoutConstraint!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        lineView.isHidden = true
+        self.setFormBaseCellSubView(keyLabel: keyLabel, valueLabel: valueLabel)
+
+    }
+    
+    override func updateFormCell(model:ZJJFormBaseModel){
+         super.updateFormCell(model: model)
+         self.updateCell(model: model)
+     }
+
+    func updateCell(model:ZJJFormBaseModel)  {
+
+        self.lineLeftConstraint.constant = model.formUI.lineLeftMargin
+        self.lineRightConstraint.constant = model.formUI.lineRightMargin
+        if model.formUI.isShowArrow {
+            self.arrowImageView.isHidden = false
+            self.valueRightConstraint.constant = 15.0
+        }else{
+            self.arrowImageView.isHidden = true
+            self.valueRightConstraint.constant = 0
+        }
+        self.setNeedsLayout()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+}
