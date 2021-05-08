@@ -15,6 +15,7 @@ typealias ZJJFormInputVerifyValueBlock = (String) -> (ZJJFormInputErrorType)
 typealias ZJJFormBaseBlock = (ZJJFormBaseModel,UITableViewCell)->()
 typealias ZJJFormInputBlock = (ZJJFormInputModel,UITableViewCell)->()
 
+
 public let kZJJFormValueOneCellIdentifier = "ZJJFormValueOneCell"
 public let kZJJFormValueTwoCellIdentifier = "ZJJFormValueTwoCell"
 public let kZJJFormInputOneCellIdentifier = "ZJJFormInputOneCell"

@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum ZJJFormValueType:Int {
+    
+    case gender = 1
+    case card = 2
+}
+
 class ViewController: UIViewController {
 
     lazy var tableView:ZJJFormTableView = {
@@ -17,8 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.addSubview(tableView)
 //        tableView.dataArray = [self.getName(),self.getPhone(),self.getCard(),self.getEmail(),self.getAddress(),self.getCard(),self.getEmail(),self.getPhone(),self.getCard(),self.getEmail()]
-        tableView.dataArray = [self.getName(),self.getCard()]
-        tableView.dataArray.append(self.getEmail())
+        tableView.dataArray = [self.getName(),self.getGender(),self.getPhone(),self.getCard(),self.getEmail(),self.getAddress(),self.getPersonalSignature()]
         tableView.isTouchEndEditing = true
         let rightBarButtonItem = UIBarButtonItem.init(title: "保存", style: .done, target: self, action: #selector(save))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -42,6 +47,30 @@ class ViewController: UIViewController {
     
     }
     
+    func getData() -> ZJJOption {
+        var option = ZJJOption()
+        for i in 0 ..< 10 {
+            let testModel = ZJJTestModel()
+            testModel.id = CGFloat(i+1)
+            testModel.jj_optionValue = "选项\(i+1)"
+            option.optionArray.append(testModel)
+        }
+        option.selectModel = option.optionArray.last
+        return option
+    }
+    
+    func showPopupView(optionModel:ZJJFormOptionModel) {
+        
+        ZJJPopup.pickerView(optionModel: optionModel.option, title: "请选择性别") { (pickerView, popupView, model, btn) in
+            if let genderModel = model as? ZJJGenderModel {
+                optionModel.option.selectModel = genderModel
+                optionModel.formText.value = genderModel.jj_optionValue ?? ""
+                optionModel.formUI.valueTextColor = .black
+                optionModel.formUI.valueTextFont = UIFont.systemFont(ofSize: 16)
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     func getName() -> ZJJFormModel {
        let inputModel = ZJJFormInputModel()
@@ -55,9 +84,8 @@ class ViewController: UIViewController {
             return .lineAndLabel
         })
     
-        inputModel.formUI.isShowArrow = true
         inputModel.verify.isBeginEnditingHiddenError = true
-        let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "姓名", value: "xioa", serviceKey: "name")
+        let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "姓名", value: "", serviceKey: "name")
         inputModel.placeholder = "请输入"
         inputModel.maxLength = 60
         inputModel.formText = textModel
@@ -65,13 +93,39 @@ class ViewController: UIViewController {
         
     }
     
-   
+    func getGender() -> ZJJFormModel {
+        let optionModel = ZJJFormOptionModel.init()
+        optionModel.option.optionArray = [ZJJGenderModel.init(id: 0),ZJJGenderModel.init(id: 1),ZJJGenderModel.init(id: 2)]
+//        optionModel.option.selectModel = optionModel.option.optionArray.first
+        optionModel.formUI.isShowArrow = true
+        
+        var value = ""
+        if let selectModel = optionModel.option.selectModel {
+            value = selectModel.jj_optionValue ?? ""
+        }else{
+            value = "请选择性别"
+            optionModel.formUI.valueTextColor = optionModel.formUI.placeholderColor
+            optionModel.formUI.valueTextFont = UIFont.systemFont(ofSize: 14)
+        }
+        
+        optionModel.formText = ZJJFormText.init(requiredType: .requiredAndStar, key: "性别", value: value, serviceKey: "gender")
+        optionModel.valueType = ZJJFormValueType.gender.rawValue
+        optionModel.formSelectCell { (model, cell) in
+            self.showPopupView(optionModel: optionModel)
+        }
+        let formModel = ZJJFormModel.init(cellStyle: .value1, model: optionModel)
+
+        return formModel
+    }
     
     func getPhone() -> ZJJFormModel {
         let baseModel = ZJJFormBaseModel()
-        let formModel = ZJJFormModel.init(cellStyle: .value2, model: baseModel)
-        let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "电话", value: "1092099200902", serviceKey: "phone")
+        let formModel = ZJJFormModel.init(cellStyle: .value1, model: baseModel)
+        let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "电话", value: "18866668888", serviceKey: "phone")
         baseModel.formText = textModel
+        baseModel.formSelectCell { (model, cell) in
+          
+        }
         return formModel
         
     }
@@ -79,7 +133,7 @@ class ViewController: UIViewController {
     func getCard() -> ZJJFormModel {
         let inputModel = ZJJFormInputModel()
         let formModel = ZJJFormModel.init(cellStyle: .textView2, model: inputModel)
-        let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "银行卡号", value: "19820992892892892".formateForBankCard(), serviceKey: "cardNo")
+        let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "银行卡号", value: "1982099289289289".formateForBankCard(), serviceKey: "cardNo")
         
 //        inputModel.formUI.isShowArrow = true
         inputModel.placeholder = "请输入银行卡号"
@@ -96,44 +150,59 @@ class ViewController: UIViewController {
     
     func getEmail() -> ZJJFormModel {
         let inputModel = ZJJFormInputModel()
-        let formModel = ZJJFormModel.init(cellStyle: .input2, model: inputModel)
+        let formModel = ZJJFormModel.init(cellStyle: .input1, model: inputModel)
         let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "邮箱", value: "1202@qq.com", serviceKey: "email")
-//        let textModel = ZJJFormText.init(valueType: 0, requiredType: .requiredAndStar, key: "邮箱", value: "1202@qq.com", serviceKey: "email")
         var uiModel = ZJJFormUI()
-        uiModel.lineLeftMargin = 20
-        uiModel.lineRightMargin = 20
+        uiModel.isShowArrow = true
+        uiModel.lineLeftMargin = 30
+        uiModel.lineRightMargin = 30
         inputModel.formUI = uiModel
         inputModel.formText = textModel
         inputModel.placeholder = "请输入邮箱地址"
         inputModel.keyboardType = .emailAddress
-        inputModel.maxLength = 32
-//        inputModel.verify = ZJJFormVerify.init(type: .editing, errorMsg: "在长度", verifyValueBlock: { (value) -> (ZJJFormInputErrorType) in
-//            if !value.verfiyLength(min: 4, max: 10){
-//                return .lineAndLabel
-//            }
-//            return .none
-//        })
+        inputModel.maxLength = 30
         inputModel.formSelectCell { (model, cell) in
-            print("======\(model.formText.key)")
+//            print("======\(model.formText.key)")
         }
         inputModel.formValueBeginEditing { (model, cell) in
-            print("----\(model.formText.key)-----")
+//            print("----\(model.formText.key)-----")
         }
         return formModel
         
     }
     
     func getAddress() -> ZJJFormModel {
-        let formModel = ZJJFormModel.init(cellStyle: .value1, model: ZJJFormBaseModel.init())
-        formModel.cellStyle = .value1
-        let textModel = ZJJFormText.init(requiredType: .none, key: "配送地址", value: "guangdongsheng guangzhoushi tianhequ zhujiangxincheng 007号", serviceKey: "address")
+        let inputModel = ZJJFormInputModel()
+        let formModel = ZJJFormModel.init(cellStyle: .textView2, model: inputModel)
+        let textModel = ZJJFormText.init(requiredType: .none, key: "居住地址", value: "guangdongsheng guangzhoushi tianhequ zhujiangxincheng 007号", serviceKey: "address")
         var uiModel = ZJJFormUI.init()
         uiModel.isShowArrow = true
         formModel.model.formText = textModel
         formModel.model.formUI = uiModel
+        inputModel.placeholder = "请输入居住地址"
+        inputModel.maxLength = 100
         formModel.model.formSelectCell { (model, cell) in
             print("======\(model.formText.key)")
         }
+        return formModel
+    }
+    
+    func getPersonalSignature() -> ZJJFormModel {
+        
+        let inputModel = ZJJFormInputModel()
+        let formModel = ZJJFormModel.init(cellStyle: .textView1, model: inputModel)
+        let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "个人说明", value: "", serviceKey: "personalSignature")
+        let maxLenght:Int = 25
+        inputModel.formUI.isShowArrow = true
+        inputModel.placeholder = "请输入,最多只能输入\(maxLenght)个字符"
+        inputModel.formText = textModel
+        inputModel.verify = ZJJFormVerify.init(type: .editing, errorMsg: "最多只能输入\(maxLenght)个字符", verifyValueBlock: { (value) -> (ZJJFormInputErrorType) in
+            if value.verfiyLength(min: 0, max: maxLenght){
+                return .none
+            }
+            return .lineAndLabel
+        })
+
         return formModel
     }
 

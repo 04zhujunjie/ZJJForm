@@ -17,6 +17,8 @@ import UIKit
     @objc optional func formValueDidEndEdit(model:ZJJFormInputModel,cell:UITableViewCell)
     @objc optional func formValueReturn(model:ZJJFormInputModel,cell:UITableViewCell)
 }
+
+
 protocol ZJJFormCellBaseProtocol {
     var delegate:ZJJFormEditCellDelegate?{set get}
     func updateFormCell(model:ZJJFormBaseModel)

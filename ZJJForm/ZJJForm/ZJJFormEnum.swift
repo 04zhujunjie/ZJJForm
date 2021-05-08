@@ -47,7 +47,7 @@ enum ZJJFormRequiredType {
 
 enum ZJJFormInputErrorType {
     case none //不显示
-    case line //显示在下横线 ，就是横线变色
+    case line //显示下横线 ，就是横线变色
     case label //显示错误的信息
     case lineAndLabel //显示错误的信息和横线变色
 }
@@ -56,7 +56,7 @@ enum ZJJFormInputErrorType {
 enum ZJJFormInputVerifyType {
     case none 
     case editing //编辑的过程中进行验证，验证不通过，显示错误提示（可以继续输入）
-    case stopEditing //编辑的过程中，验证不通过，禁止输入
+    case stopEditing //编辑的过程中进行验证，验证不通过，禁止输入
     case endEdit //编辑结束后，在进行验证，验证不通过，显示错误提示
 }
 

@@ -31,7 +31,7 @@ extension String {
     }
     
     func formateForBankCard() -> String {
-        return self.format(of: " ", sliceLength: 6)
+        return self.format(of: " ", sliceLength: 4)
     }
     
     /// 分组格式化
