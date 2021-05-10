@@ -9,6 +9,7 @@ import UIKit
 
 enum ZJJFormCellStyle  {
     case `default`
+    case option
     case value1
     case value2
     case input1
@@ -19,6 +20,8 @@ enum ZJJFormCellStyle  {
    
     func cellIdentifier() -> String {
         switch self {
+        case .option:
+            return kZJJFormTextViewOneCellIdentifier
         case .value1:
             return kZJJFormValueOneCellIdentifier
         case .value2:
@@ -43,6 +46,12 @@ enum ZJJFormRequiredType {
     case none //非必须
     case required //必须
     case requiredAndStar //必须带红星
+}
+
+enum ZJJFormInputReturnDoneType {
+    case none //
+    case hiddenKeyboard //隐藏键盘
+    case next //进入下一个输入框
 }
 
 enum ZJJFormInputErrorType {

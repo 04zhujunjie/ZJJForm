@@ -7,6 +7,6 @@
 
 import UIKit
 
-class ZJJFormOptionModel:ZJJFormBaseModel {
+class ZJJFormOptionModel:ZJJFormInputModel {
     var option:ZJJOption = ZJJOption()
 }

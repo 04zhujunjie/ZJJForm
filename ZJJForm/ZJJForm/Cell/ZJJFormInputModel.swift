@@ -29,7 +29,9 @@ class ZJJFormInputModel: ZJJFormBaseModel,ZJJFormBlockInputProtocol {
     var isScrollEnabled:Bool = false //textView，当文字超过视图的边框时，是否允许滑动
     var keyboardType: UIKeyboardType = .default //输入键盘类型
     var returnKeyType:UIReturnKeyType = .default //return键的类型
+    var returnDoneType:ZJJFormInputReturnDoneType = .next
     var placeholder:String = "" //输入框占位文本
     var verify:ZJJFormVerify = ZJJFormVerify() //校验输入框的类
-    
+    var isConsecutiveSpaces:Bool = false //是否连续空格，如果连续两个空格以上，会导致多出一个点代替空格
 }
+

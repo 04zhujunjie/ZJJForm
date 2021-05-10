@@ -7,6 +7,11 @@
 
 import UIKit
 
+struct ZJJFormSectionModel {
+    var title:String?
+    var list:[ZJJFormModel] = []
+}
+
 class ZJJFormModel{
     var cellStyle:ZJJFormCellStyle = .default //cell的样式
     var model:ZJJFormBaseModel

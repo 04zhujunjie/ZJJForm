@@ -73,7 +73,6 @@ extension ZJJFormTextFieldBaseCell:UITextFieldDelegate {
         self.setupFormValueChange(value:value)
     }
     
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if string.count > 0 && string != "\n"  {

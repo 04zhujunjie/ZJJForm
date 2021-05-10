@@ -8,9 +8,9 @@
 import UIKit
 
 enum ZJJFormValueType:Int {
-    
     case gender = 1
     case card = 2
+    
 }
 
 class ViewController: UIViewController {
@@ -22,8 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(tableView)
-//        tableView.dataArray = [self.getName(),self.getPhone(),self.getCard(),self.getEmail(),self.getAddress(),self.getCard(),self.getEmail(),self.getPhone(),self.getCard(),self.getEmail()]
-        tableView.dataArray = [self.getName(),self.getGender(),self.getPhone(),self.getCard(),self.getEmail(),self.getAddress(),self.getPersonalSignature()]
+        tableView.dataArray = [ZJJFormSectionModel.init(title: "", list: [self.getName(),self.getGender(),self.getPhone(),self.getCard(),self.getEmail(),self.getAddress(),self.getPersonalSignature()])]
         tableView.isTouchEndEditing = true
         let rightBarButtonItem = UIBarButtonItem.init(title: "保存", style: .done, target: self, action: #selector(save))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -37,14 +36,31 @@ class ViewController: UIViewController {
 
     @objc func save(){
         self.view.endEditing(true)
-        let param = ZJJFormParam.init(dataArray: tableView.dataArray)
+        var param = ZJJFormParam.init(dataArray: tableView.dataArray,filterValueTypes: [ZJJFormValueType.gender.rawValue,ZJJFormValueType.card.rawValue])
         if param.isValid {
+            
+            for item in param.filterArray {
 
-            print("====\(param.param)===")
+                if item.model.valueType == ZJJFormValueType.gender.rawValue {
+                    //性别
+                    if let optionModel = item.model as? ZJJFormOptionModel,let selectModel = optionModel.option.selectModel as? ZJJGenderModel {
+                        param.param[item.model.formText.serviceKey] = selectModel.genderId
+                    }
+                    
+                }else if item.model.valueType == ZJJFormValueType.card.rawValue{
+                    //银行卡,去掉间隔空格
+                    let cardNo = item.model.formText.value.replacingOccurrences(of: " ", with: "")
+                    param.param[item.model.formText.serviceKey] = cardNo
+                }
+            }
+            
+        print("====\(param.param)===")
+            
         }else{
+            print("==第一个错误的提示===\(param.firstErrorMsg ?? "")")
             self.tableView.reloadData()
         }
-    
+       
     }
     
     func getData() -> ZJJOption {
@@ -65,8 +81,6 @@ class ViewController: UIViewController {
             if let genderModel = model as? ZJJGenderModel {
                 optionModel.option.selectModel = genderModel
                 optionModel.formText.value = genderModel.jj_optionValue ?? ""
-                optionModel.formUI.valueTextColor = .black
-                optionModel.formUI.valueTextFont = UIFont.systemFont(ofSize: 16)
                 self.tableView.reloadData()
             }
         }
@@ -78,7 +92,7 @@ class ViewController: UIViewController {
        let formModel =  ZJJFormModel.init(cellStyle: .input1, model: inputModel)
 
         inputModel.verify = ZJJFormVerify.init(type: .editing,errorMsg: "只能输入英文字母", verifyValueBlock: { (value) -> (ZJJFormInputErrorType) in
-            if value.verifyRegex(of: kZJJOnlySpaceAndEnglishRegex){
+            if value.verifyRegex(of: "^[a-zA-Z / s{0,1}]+$"){
                 return .none
             }
             return .lineAndLabel
@@ -102,10 +116,6 @@ class ViewController: UIViewController {
         var value = ""
         if let selectModel = optionModel.option.selectModel {
             value = selectModel.jj_optionValue ?? ""
-        }else{
-            value = "请选择性别"
-            optionModel.formUI.valueTextColor = optionModel.formUI.placeholderColor
-            optionModel.formUI.valueTextFont = UIFont.systemFont(ofSize: 14)
         }
         
         optionModel.formText = ZJJFormText.init(requiredType: .requiredAndStar, key: "性别", value: value, serviceKey: "gender")
@@ -113,7 +123,9 @@ class ViewController: UIViewController {
         optionModel.formSelectCell { (model, cell) in
             self.showPopupView(optionModel: optionModel)
         }
-        let formModel = ZJJFormModel.init(cellStyle: .value1, model: optionModel)
+        optionModel.placeholder = "请选择性别"
+        optionModel.verify = ZJJFormVerify.init(errorMsg: "请选择性别")
+        let formModel = ZJJFormModel.init(cellStyle: .option, model: optionModel)
 
         return formModel
     }
@@ -134,8 +146,7 @@ class ViewController: UIViewController {
         let inputModel = ZJJFormInputModel()
         let formModel = ZJJFormModel.init(cellStyle: .textView2, model: inputModel)
         let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "银行卡号", value: "1982099289289289".formateForBankCard(), serviceKey: "cardNo")
-        
-//        inputModel.formUI.isShowArrow = true
+        inputModel.valueType = ZJJFormValueType.card.rawValue
         inputModel.placeholder = "请输入银行卡号"
         inputModel.keyboardType = .numberPad
         inputModel.formText = textModel
@@ -196,7 +207,7 @@ class ViewController: UIViewController {
         inputModel.formUI.isShowArrow = true
         inputModel.placeholder = "请输入,最多只能输入\(maxLenght)个字符"
         inputModel.formText = textModel
-        inputModel.verify = ZJJFormVerify.init(type: .editing, errorMsg: "最多只能输入\(maxLenght)个字符", verifyValueBlock: { (value) -> (ZJJFormInputErrorType) in
+        inputModel.verify = ZJJFormVerify.init(type: .editing, errorMsg: "至少输入一个字符，最多只能输入\(maxLenght)个字符", verifyValueBlock: { (value) -> (ZJJFormInputErrorType) in
             if value.verfiyLength(min: 0, max: maxLenght){
                 return .none
             }

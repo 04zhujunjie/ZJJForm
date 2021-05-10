@@ -8,8 +8,7 @@ import UIKit
 
 //只能输入英文和空格
 public let kZJJOnlySpaceAndEnglishRegex = "^[a-zA-Z / s]+$"
-//检验邮箱的正则表达
-public let kZJJEmailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+
 
 typealias ZJJFormInputVerifyValueBlock = (String) -> (ZJJFormInputErrorType)
 typealias ZJJFormBaseBlock = (ZJJFormBaseModel,UITableViewCell)->()

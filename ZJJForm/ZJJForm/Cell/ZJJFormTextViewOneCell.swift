@@ -25,6 +25,16 @@ class ZJJFormTextViewOneCell: ZJJFormTextViewBaseCell {
     }
     
     override func updateFormInputCell(model: ZJJFormInputModel) {
+        if model.isKind(of: ZJJFormOptionModel.self) {
+            textView.isEditable = false
+            textView.isUserInteractionEnabled = false
+            if model.formText.value.count > 0 {
+                model.verify.errorType = .none
+            }
+        }else{
+            textView.isEditable = true
+            textView.isUserInteractionEnabled = true
+        }
         super.updateFormInputCell(model: model)
         self.updateCell(model: model)
     }
@@ -40,11 +50,11 @@ class ZJJFormTextViewOneCell: ZJJFormTextViewBaseCell {
             self.arrowImageView.isHidden = true
             self.valueRightConstraint.constant = 0
         }
+       
         self.setNeedsLayout()
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

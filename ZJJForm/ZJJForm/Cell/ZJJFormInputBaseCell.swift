@@ -243,6 +243,14 @@ extension ZJJFormInputBaseCell {
         }
         
         var value = (inputView.value(forKey: "text") as? String) ?? ""
+        
+        if !model.isConsecutiveSpaces {
+            //这里限时不能连续输入两个空格，否则一个空格会变成点
+            if value.hasSuffix(" ") && text == " " {
+                return false
+            }
+        }
+        
         //range.length == 0 表示正常输入，range.location表示当前输入的位置
         if range.length == 0 {
             //表示是正常输入或者粘贴

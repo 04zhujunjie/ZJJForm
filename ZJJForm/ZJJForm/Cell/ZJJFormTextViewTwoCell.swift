@@ -26,6 +26,7 @@ class ZJJFormTextViewTwoCell: ZJJFormTextViewBaseCell {
         super.updateFormInputCell(model: model)
         self.leftMarginConstraint.constant = model.formUI.lineLeftMargin
         self.rightMarginConstraint.constant = model.formUI.lineRightMargin
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

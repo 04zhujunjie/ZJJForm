@@ -7,8 +7,9 @@
 
 import UIKit
 
-class ZJJFormBaseTableView: UITableView {
-    open   var dataArray:[ZJJFormModel] = []{
+class ZJJFormBaseTableView: UITableView,ZJJFormEditCellDelegate {
+ 
+    open   var dataArray:[ZJJFormSectionModel] = []{
         didSet{
             //需要做延时，动态布局才显示正常
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -16,6 +17,7 @@ class ZJJFormBaseTableView: UITableView {
             }
         }
     }
+    private var formContentInset:UIEdgeInsets = .zero
     private var tapGesture:UITapGestureRecognizer?
     open var isTouchEndEditing:Bool = true{
         didSet{
@@ -65,10 +67,8 @@ class ZJJFormBaseTableView: UITableView {
     @objc private func formKeyboardWillShow(note:NSNotification) {
         guard let userInfo = note.userInfo else {return}
         guard let keyboardRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else{return}
-        //获取动画执行的时间
-        var duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
-        if duration == nil { duration = 0.25 }
         self.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
+        self.formContentInset = self.contentInset
     }
     @objc private func formKeyboardWillHidden(note:NSNotification) {
         self.contentInset = UIEdgeInsets.zero
@@ -76,6 +76,18 @@ class ZJJFormBaseTableView: UITableView {
     deinit {
         //取消键盘通知的监听
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setFormEditCellDelegate(model:ZJJFormBaseModel,cell:UITableViewCell)  {
+        if var inputCell = cell as? ZJJFormInputCellProtocol {
+            if let inputModel = model as? ZJJFormInputModel {
+                inputCell.updateFormInputCell(model:inputModel)
+                inputCell.delegate = self
+            }
+        }else if var baseCell = cell as? ZJJFormCellBaseProtocol{
+            baseCell.updateFormCell(model: model)
+            baseCell.delegate = self
+        }
     }
     
     @objc private func touchesFormTableView(){
@@ -88,6 +100,90 @@ class ZJJFormBaseTableView: UITableView {
             self.beginUpdates()
             self.endUpdates()
         }
+    }
+    
+    func formSelectCell(model:ZJJFormBaseModel,cell:UITableViewCell){
+        if self.isTouchEndEditing {
+            //隐藏键盘
+            self.endEditing(true)
+        }
+    }
+    
+    func formValueBeginEditing(model: ZJJFormInputModel, cell: UITableViewCell) {
+        self.verifyUpdates(model: model,cell: cell)
+    }
+
+    func formValueChange(model: ZJJFormInputModel, cell: UITableViewCell) {
+        self.verifyUpdates(model: model,cell: cell)
+    }
+
+    func formValueDidEndEdit(model: ZJJFormInputModel, cell: UITableViewCell) {
+        self.verifyUpdates(model: model,cell: cell)
+    }
+
+    func formValueReturn(model: ZJJFormInputModel, cell: UITableViewCell) {
+        self.setReturnDone(model: model)
+    }
+    
+    func verifyUpdates(model: ZJJFormInputModel,cell: UITableViewCell) {
+        
+        if let _ = cell as? ZJJFormTextViewBaseCell {
+            //说明是textView输入，需要时时更新表格，才能达到自动布局
+            self.formTableViewUpdates()
+        }else{
+            if model.verify.verifyValueBlock != nil {
+                self.formTableViewUpdates()
+            }
+        }
+    }
+    
+    func setReturnDone(model: ZJJFormInputModel)  {
+        if model.returnDoneType == .hiddenKeyboard {
+            self.endEditing(true)
+        }else if model.returnDoneType == .next{
+            if let indexPath = self.formInputNextCell(model: model),let cell = self.cellForRow(at: indexPath) {
+                self.formInputBecomeFirstResponder(view: cell)
+                self.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }else{
+                self.endEditing(true)
+            }
+        }
+    }
+    
+    //设置响应的输入框
+    private func formInputBecomeFirstResponder(view:UIView) {
+        for subView in view.subviews {
+            if let textField = subView as? UITextField {
+                textField.becomeFirstResponder()
+            }else if  let textView = subView as? UITextView {
+                textView.becomeFirstResponder()
+            }else{
+                self.formInputBecomeFirstResponder(view: subView)
+            }
+        }
+    }
+    
+    //查找下个有输入框的UITableViewCell
+    private  func formInputNextCell(model:ZJJFormInputModel) -> IndexPath? {
+        var nextIndex:Int = -1
+        var currentIndex:Int = -1
+        for (section,sectionItem) in dataArray.enumerated() {
+            for (index,item) in sectionItem.list.enumerated() {
+                if item.model == model {
+                    currentIndex = index
+                }
+                if currentIndex > -1 && index > currentIndex&&item.model.isKind(of: ZJJFormInputModel.self) {
+                    nextIndex = index
+                    break
+                }
+            }
+            if sectionItem.list.count > nextIndex && nextIndex > -1 {
+                let indexPath = IndexPath.init(row: nextIndex, section: section)
+                return indexPath
+            }
+        }
+        
+        return nil
     }
     
 }
