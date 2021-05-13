@@ -19,16 +19,9 @@ class ZJJFormTableView: ZJJFormBaseTableView {
     }
     
     private func registerFormCell() {
-        
         self.delegate = self
         self.dataSource = self
-        self.register(UINib.init(nibName: kZJJFormValueOneCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormValueOneCellIdentifier)
-        self.register(UINib.init(nibName: kZJJFormValueTwoCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormValueTwoCellIdentifier)
-        self.register(UINib.init(nibName: kZJJFormInputOneCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormInputOneCellIdentifier)
-        self.register(UINib.init(nibName: kZJJFormInputTwoCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormInputTwoCellIdentifier)
-        self.register(UINib.init(nibName: kZJJFormTextViewOneCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormTextViewOneCellIdentifier)
-        self.register(UINib.init(nibName: kZJJFormTextViewTwoCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormTextViewTwoCellIdentifier)
-       
+        self.registerDefaultFormCell()
     }
 }
 
@@ -70,6 +63,5 @@ extension ZJJFormTableView:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.001
     }
-    
-    
+
 }

@@ -1,15 +1,19 @@
 //
-//  ViewController.swift
+//  NormalController.swift
 //  ZJJForm
 //
-//  Created by weiqu on 2021/4/16.
+//  Created by weiqu on 2021/5/12.
 //
 
 import UIKit
 
+enum ZJJFormValueType:Int {
+    case gender = 1
+    case card = 2
+    
+}
 
-
-class ViewController: UIViewController {
+class NormalController: UIViewController {
 
     lazy var tableView:ZJJFormTableView = {
         let tableView = ZJJFormTableView.init(frame: self.view.bounds, style: .plain)
@@ -151,6 +155,21 @@ class ViewController: UIViewController {
                 inputCell.textView.text = model.formText.value.formateForBankCard()
             }
         }
+        
+        let topViewConfig = ZJJPopupTopViewConfig.init()
+        topViewConfig.cancelConfig.isHidden = true
+        topViewConfig.titleConfig.text = "正在输入银行卡号"
+        topViewConfig.backgroundColor = .lightGray
+        topViewConfig.confirmConfig.set(cornerRadius: ZJJPopupButtonConfig.halfRadius)//圆角等于按钮高度的一半
+        
+        topViewConfig.confirmConfig.backgroundColor = .white
+        let topView = ZJJPopupTopView.init(config: topViewConfig)
+        
+        topView.clickConfirmButton { (btn) in
+            self.view.endEditing(true)
+        }
+        inputModel.inputAccessoryView = topView
+        
         return formModel
         
     }
@@ -214,4 +233,3 @@ class ViewController: UIViewController {
     }
 
 }
-

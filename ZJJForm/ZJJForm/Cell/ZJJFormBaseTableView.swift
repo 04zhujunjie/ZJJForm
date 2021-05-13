@@ -17,7 +17,6 @@ class ZJJFormBaseTableView: UITableView,ZJJFormEditCellDelegate {
             }
         }
     }
-    private var formContentInset:UIEdgeInsets = .zero
     private var tapGesture:UITapGestureRecognizer?
     open var isTouchEndEditing:Bool = true{
         didSet{
@@ -45,7 +44,6 @@ class ZJJFormBaseTableView: UITableView,ZJJFormEditCellDelegate {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.initFormBaseTableView()
     }
     
     private func initFormBaseTableView() {
@@ -68,7 +66,6 @@ class ZJJFormBaseTableView: UITableView,ZJJFormEditCellDelegate {
         guard let userInfo = note.userInfo else {return}
         guard let keyboardRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else{return}
         self.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: keyboardRect.height, right: 0)
-        self.formContentInset = self.contentInset
     }
     @objc private func formKeyboardWillHidden(note:NSNotification) {
         self.contentInset = UIEdgeInsets.zero
@@ -76,6 +73,18 @@ class ZJJFormBaseTableView: UITableView,ZJJFormEditCellDelegate {
     deinit {
         //取消键盘通知的监听
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    //注册默认cell
+    func registerDefaultFormCell() {
+        
+        self.register(UINib.init(nibName: kZJJFormValueOneCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormValueOneCellIdentifier)
+        self.register(UINib.init(nibName: kZJJFormValueTwoCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormValueTwoCellIdentifier)
+        self.register(UINib.init(nibName: kZJJFormInputOneCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormInputOneCellIdentifier)
+        self.register(UINib.init(nibName: kZJJFormInputTwoCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormInputTwoCellIdentifier)
+        self.register(UINib.init(nibName: kZJJFormTextViewOneCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormTextViewOneCellIdentifier)
+        self.register(UINib.init(nibName: kZJJFormTextViewTwoCellIdentifier, bundle: nil), forCellReuseIdentifier: kZJJFormTextViewTwoCellIdentifier)
+       
     }
     
     func setFormEditCellDelegate(model:ZJJFormBaseModel,cell:UITableViewCell)  {
@@ -96,10 +105,8 @@ class ZJJFormBaseTableView: UITableView,ZJJFormEditCellDelegate {
         }
     }
     func formTableViewUpdates() {
-        UIView.animate(withDuration: 0.1) {
-            self.beginUpdates()
-            self.endUpdates()
-        }
+        self.beginUpdates()
+        self.endUpdates()
     }
     
     func formSelectCell(model:ZJJFormBaseModel,cell:UITableViewCell){
@@ -108,7 +115,7 @@ class ZJJFormBaseTableView: UITableView,ZJJFormEditCellDelegate {
             self.endEditing(true)
         }
     }
-    
+
     func formValueBeginEditing(model: ZJJFormInputModel, cell: UITableViewCell) {
         self.verifyUpdates(model: model,cell: cell)
     }

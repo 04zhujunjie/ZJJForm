@@ -78,6 +78,7 @@ class ZJJFormInputBaseCell: ZJJFormBaseCell,ZJJFormBlockInputProtocol,ZJJFormInp
             textField.returnKeyType = model.returnKeyType
             textField.textColor = model.formUI.valueTextColor
             textField.font = model.formUI.valueTextFont
+            textField.inputAccessoryView = model.inputAccessoryView
         }else if let textView = inputView as? UITextView {
             textView.textAlignment = model.formUI.inputTextAlignment
             textView.text = model.formText.value
@@ -86,6 +87,7 @@ class ZJJFormInputBaseCell: ZJJFormBaseCell,ZJJFormBlockInputProtocol,ZJJFormInp
             textView.textColor = model.formUI.valueTextColor
             textView.font = model.formUI.valueTextFont
             textView.isScrollEnabled = model.isScrollEnabled
+            textView.inputAccessoryView = model.inputAccessoryView
         }
 
         guard let label = self.formPlaceholderLabel else {

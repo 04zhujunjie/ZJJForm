@@ -52,6 +52,11 @@ class ZJJPopupTopViewConfig{
     var titleConfig:ZJJPopupUIConfig = ZJJPopupUIConfig() //标题的设置
     var cancelConfig:ZJJPopupButtonConfig = ZJJPopupButtonConfig.init(text: "取消") //取消按钮设置
     var confirmConfig:ZJJPopupButtonConfig = ZJJPopupButtonConfig.init(text: "确定") //确定按钮设置
+    init(isHidden:Bool = false,minHeight:CGFloat = 48,isTitleAutomaticCenter:Bool = true) {
+        self.isHidden = isHidden
+        self.minHeight = minHeight
+        self.isTitleAutomaticCenter = isTitleAutomaticCenter
+    }
 }
 
 class ZJJPopupSeparatorConfig {
@@ -64,6 +69,11 @@ class ZJJPopupButtonConfig: ZJJPopupUIConfig {
     var margin:CGFloat = 8 //按钮距离父视图的左边或右边距离,如果按钮在左边，那么就是距离父视图的左边距，如果按钮在右边，那么就是距离俯视图的右边距
     var maxWidth:CGFloat = 80 //按钮的最大宽度，如果文本过长，超过最大宽度，那么按钮的宽度为maxWidth，会根据numberOfLines属性来计算文本是否换行
     var minTopBottom:CGFloat = 8 //按钮距离父视图的上下边的最小边距
+    open class var  halfRadius: CGFloat {
+        get {
+            return -1
+        }
+    } //圆角等于按钮高度的一半的参数
 }
 
 

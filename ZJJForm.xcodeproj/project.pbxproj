@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF57919B264BAA8900A9CD2A /* CustomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF579198264BAA8900A9CD2A /* CustomController.swift */; };
+		FF57919C264BAA8900A9CD2A /* NormalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF579199264BAA8900A9CD2A /* NormalController.swift */; };
+		FF57919D264BAA8900A9CD2A /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF57919A264BAA8900A9CD2A /* MainController.swift */; };
+		FF5791A1264CC5AF00A9CD2A /* CompayAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF57919F264CC5AF00A9CD2A /* CompayAddressCell.swift */; };
+		FF5791A2264CC5AF00A9CD2A /* CompayAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5791A0264CC5AF00A9CD2A /* CompayAddressCell.xib */; };
+		FF5791A6264CD17E00A9CD2A /* CustomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5791A5264CD17E00A9CD2A /* CustomModel.swift */; };
 		FF63A1E5262972F800731B7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A1E4262972F800731B7F /* AppDelegate.swift */; };
 		FF63A1E7262972F800731B7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A1E6262972F800731B7F /* SceneDelegate.swift */; };
 		FF63A1E9262972F800731B7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF63A1E8262972F800731B7F /* ViewController.swift */; };
@@ -58,6 +64,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FF579198264BAA8900A9CD2A /* CustomController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomController.swift; sourceTree = "<group>"; };
+		FF579199264BAA8900A9CD2A /* NormalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NormalController.swift; sourceTree = "<group>"; };
+		FF57919A264BAA8900A9CD2A /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		FF57919F264CC5AF00A9CD2A /* CompayAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompayAddressCell.swift; sourceTree = "<group>"; };
+		FF5791A0264CC5AF00A9CD2A /* CompayAddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompayAddressCell.xib; sourceTree = "<group>"; };
+		FF5791A5264CD17E00A9CD2A /* CustomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModel.swift; sourceTree = "<group>"; };
 		FF63A1E1262972F800731B7F /* ZJJForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJJForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF63A1E4262972F800731B7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF63A1E6262972F800731B7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +133,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF579197264BAA8900A9CD2A /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				FF579198264BAA8900A9CD2A /* CustomController.swift */,
+				FF579199264BAA8900A9CD2A /* NormalController.swift */,
+				FF57919A264BAA8900A9CD2A /* MainController.swift */,
+				FF5791A5264CD17E00A9CD2A /* CustomModel.swift */,
+				FF57919F264CC5AF00A9CD2A /* CompayAddressCell.swift */,
+				FF5791A0264CC5AF00A9CD2A /* CompayAddressCell.xib */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		FF63A1D8262972F800731B7F = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +165,7 @@
 		FF63A1E3262972F800731B7F /* ZJJForm */ = {
 			isa = PBXGroup;
 			children = (
+				FF579197264BAA8900A9CD2A /* Example */,
 				FF63A1F92629730800731B7F /* ZJJForm */,
 				FF63A1E4262972F800731B7F /* AppDelegate.swift */,
 				FF63A1E6262972F800731B7F /* SceneDelegate.swift */,
@@ -306,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF5791A2264CC5AF00A9CD2A /* CompayAddressCell.xib in Resources */,
 				FF63A22A262D83ED00731B7F /* ZJJFormInputTwoCell.xib in Resources */,
 				FF63A1F1262972FB00731B7F /* LaunchScreen.storyboard in Resources */,
 				FF63A21B262D560100731B7F /* form_gd__icon@2x.png in Resources */,
@@ -331,6 +358,7 @@
 				FF63A24D26329F8F00731B7F /* ZJJFormTextViewTwoCell.swift in Sources */,
 				FFB48280264682000062AB31 /* ZJJPopup.swift in Sources */,
 				FFB4819C263698C70062AB31 /* ZJJFormBaseTableView.swift in Sources */,
+				FF5791A6264CD17E00A9CD2A /* CustomModel.swift in Sources */,
 				FFB481A72636999E0062AB31 /* ZJJFormUI.swift in Sources */,
 				FF63A2452632951C00731B7F /* ZJJFormTextFieldBaseCell.swift in Sources */,
 				FF63A229262D83ED00731B7F /* ZJJFormInputTwoCell.swift in Sources */,
@@ -345,14 +373,17 @@
 				FFB4827D264682000062AB31 /* ZJJOptionProtocol.swift in Sources */,
 				FF63A207262989DC00731B7F /* ZJJFormProtocol.swift in Sources */,
 				FFB481CA2637FC700062AB31 /* ZJJTestModel.swift in Sources */,
+				FF57919B264BAA8900A9CD2A /* CustomController.swift in Sources */,
 				FFB481B026369A740062AB31 /* ZJJFormText.swift in Sources */,
 				FFB481AA263699E60062AB31 /* ZJJFormVerify.swift in Sources */,
 				FFB4828626468B410062AB31 /* ZJJFormOptionModel.swift in Sources */,
 				FF63A224262D83B400731B7F /* ZJJFormInputOneCell.swift in Sources */,
+				FF5791A1264CC5AF00A9CD2A /* CompayAddressCell.swift in Sources */,
 				FF63A1E5262972F800731B7F /* AppDelegate.swift in Sources */,
 				FFB48281264682000062AB31 /* ZJJPopupModel.swift in Sources */,
 				FF63A211262D51AC00731B7F /* ZJJFormValueOneCell.swift in Sources */,
 				FF63A1FF262974A000731B7F /* ZJJFormEnum.swift in Sources */,
+				FF57919C264BAA8900A9CD2A /* NormalController.swift in Sources */,
 				FFB4827A264682000062AB31 /* ZJJDefaultSelectTableView.swift in Sources */,
 				FFB4827C264682000062AB31 /* ZJJDefaultPickerView.swift in Sources */,
 				FF63A241263261A200731B7F /* ZJJFormExtension.swift in Sources */,
@@ -363,6 +394,7 @@
 				FF63A232262D855700731B7F /* ZJJFormValueTwoCell.swift in Sources */,
 				FFB4827B264682000062AB31 /* ZJJOption.swift in Sources */,
 				FF63A20C262D2F9A00731B7F /* ZJJFormTableView.swift in Sources */,
+				FF57919D264BAA8900A9CD2A /* MainController.swift in Sources */,
 				FF63A1E7262972F800731B7F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

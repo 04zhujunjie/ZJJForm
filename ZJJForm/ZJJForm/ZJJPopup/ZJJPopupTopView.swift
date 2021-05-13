@@ -7,20 +7,47 @@
 
 import UIKit
 
+typealias ZJJPopupTopViewButtonBlock = (UIButton) -> ()
+
 class ZJJPopupTopView: UIView {
     
     private let titleLabel = UILabel()
     private let lineView:UIView = UIView()
-   public let cancelButton = UIButton()
-   public let confirmButton = UIButton()
+    public let cancelButton = UIButton()
+    public let confirmButton = UIButton()
+    private var cancelButtonBlock:ZJJPopupTopViewButtonBlock?
+    private var confirmButtonBlock:ZJJPopupTopViewButtonBlock?
     private var config:ZJJPopupTopViewConfig =  ZJJPopupTopViewConfig()
     
+     
+    
+    init(frame: CGRect = .zero,config:ZJJPopupTopViewConfig = ZJJPopupTopViewConfig()) {
+        super.init(frame: frame)
+        self.setup(frame: frame, config: config)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public func setup(frame:CGRect,config:ZJJPopupTopViewConfig) {
-        self.frame = frame
-        
+        var selfFrame = frame
+        if frame.size.width < 1 {
+            selfFrame.size.width = UIScreen.main.bounds.width
+        }
+        self.frame = selfFrame
         confirmButton.contentEdgeInsets = .init(top: 0, left: 15, bottom: 0, right: 15)
         self.config = config
+        self.cancelButton.addTarget(self, action: #selector(cancelButtonClick(btn:)), for: .touchUpInside)
+        self.confirmButton.addTarget(self, action: #selector(confirmButtonClick(btn:)), for: .touchUpInside)
         self.setupUI()
+    }
+    
+    func clickCancelButton(block:ZJJPopupTopViewButtonBlock?) {
+        self.cancelButtonBlock = block
+    }
+    
+    func clickConfirmButton(block:ZJJPopupTopViewButtonBlock?) {
+        self.confirmButtonBlock = block
     }
     
     private func setupUI() {
@@ -35,6 +62,9 @@ class ZJJPopupTopView: UIView {
             cancelButton.contentEdgeInsets = .init(top: 0, left: config.cancelConfig.leftRightMargin, bottom: 0, right: config.cancelConfig.leftRightMargin)
             self.setup(view: cancelButton, config: config.cancelConfig)
             cancelSize = self.getBtnSize(config: config.cancelConfig)
+            if config.cancelConfig.cornerRadius == ZJJPopupButtonConfig.halfRadius {
+                cancelButton.layer.cornerRadius = cancelSize.height/2.0
+            }
         }
         
         if !config.confirmConfig.isHidden {
@@ -42,6 +72,9 @@ class ZJJPopupTopView: UIView {
             confirmButton.contentEdgeInsets = .init(top: 0, left: config.confirmConfig.leftRightMargin, bottom: 0, right: config.confirmConfig.leftRightMargin)
             self.setup(view: confirmButton, config: config.confirmConfig)
             confirmSize = self.getBtnSize(config: config.confirmConfig)
+            if config.confirmConfig.cornerRadius == ZJJPopupButtonConfig.halfRadius {
+                confirmButton.layer.cornerRadius = confirmSize.height/2.0
+            }
         }
         
         if !config.titleConfig.isHidden {
@@ -189,6 +222,18 @@ class ZJJPopupTopView: UIView {
             view.layer.borderWidth = config.borderWidth
             view.layer.borderColor = config.borderColor.cgColor
             view.layer.cornerRadius = config.cornerRadius
+        }
+    }
+    
+    @objc private func cancelButtonClick(btn:UIButton){
+        if let block = self.cancelButtonBlock {
+            block(btn)
+        }
+    }
+    
+    @objc private func confirmButtonClick(btn:UIButton){
+        if let block = self.confirmButtonBlock {
+            block(btn)
         }
     }
     

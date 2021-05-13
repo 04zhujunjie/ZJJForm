@@ -100,25 +100,25 @@ class ZJJPopupView: UIView,UIGestureRecognizerDelegate {
             contentViewWidth = self.getViewWidth()
         }
         self.topView.setup(frame: CGRect.init(x: 0, y: 0, width:contentViewWidth, height:0), config: model.topViewConfig)
-        self.topView.cancelButton.addTarget(self, action: #selector(cancelButtonClick(btn:)), for: .touchUpInside)
-        self.topView.confirmButton.addTarget(self, action: #selector(confirmButtonClick(btn:)), for: .touchUpInside)
+        self.topView.clickCancelButton { [weak self](btn) in
+            guard let weakSelf = self else {return}
+            weakSelf.hidden()
+            if let cancelBlock = weakSelf.cancelBlock{
+                cancelBlock(weakSelf,btn)
+            }
+        }
+        self.topView.clickConfirmButton { [weak self](btn) in
+            guard let weakSelf = self else {return}
+            if weakSelf.model.isConfirmHidden {
+                weakSelf.hidden()
+            }
+            if let confirmBlock = weakSelf.confirmBlock{
+                confirmBlock(weakSelf,btn)
+            }
+        }
+
     }
     
-    @objc func cancelButtonClick(btn:UIButton){
-        self.hidden()
-        if let cancelBlock = self.cancelBlock{
-            cancelBlock(self,btn)
-        }
-    }
-    
-    @objc func confirmButtonClick(btn:UIButton){
-        if model.isConfirmHidden {
-            self.hidden()
-        }
-        if let confirmBlock = self.confirmBlock{
-            confirmBlock(self,btn)
-        }
-    }
     
     open  func show() {
         if self.isAnimation {
