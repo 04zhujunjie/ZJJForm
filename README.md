@@ -1,7 +1,4 @@
-# ZJJForm
-
-
-# ZJJPopup   
+# ZJJForm  
 
 ### 效果图
 ![image](https://github.com/04zhujunjie/ZJJForm/blob/main/ZJJForm.gif)
@@ -12,7 +9,6 @@
 3、cell可以根据输入的文本长度，进行高度的自适应       
 4、cell的不同样式，只需要根据ZJJFormModel对象进行配置即可        
  
-
 ### 表单用到的枚举：      
    
 ```
@@ -80,7 +76,7 @@ enum ZJJFormInputVerifyType {
 
 ```
 
-###表单文本基础设置对象
+### 表单文本基础设置对象
 ```
 struct ZJJFormText {
     
@@ -92,7 +88,7 @@ struct ZJJFormText {
 
 ```
 
-###表单Cell的UI样式对象
+### 表单Cell的UI样式对象
 
 ```
 struct ZJJFormUI {
@@ -223,7 +219,7 @@ struct ZJJFormParam {
 
 ```
 
-###自定义cell
+### 自定义cell
 
 1、文本显示，继承ZJJFormBaseCell，并调用以下方法
 
