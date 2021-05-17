@@ -14,7 +14,7 @@ enum ZJJFormValueType:Int {
 }
 
 class NormalController: UIViewController {
-
+    
     lazy var tableView:ZJJFormTableView = {
         let tableView = ZJJFormTableView.init(frame: self.view.bounds, style: .plain)
         return tableView
@@ -31,16 +31,16 @@ class NormalController: UIViewController {
         
         
         print("++++-----\(formModel.cellStyle.cellIdentifier())")
-
+        
     }
-
+    
     @objc func save(){
         self.view.endEditing(true)
         var param = ZJJFormParam.init(dataArray: tableView.dataArray,filterValueTypes: [ZJJFormValueType.gender.rawValue,ZJJFormValueType.card.rawValue])
         if param.isValid {
             
             for item in param.filterArray {
-
+                
                 if item.model.valueType == ZJJFormValueType.gender.rawValue {
                     //性别
                     if let optionModel = item.model as? ZJJFormOptionModel,let selectModel = optionModel.option.selectModel as? ZJJGenderModel {
@@ -54,13 +54,16 @@ class NormalController: UIViewController {
                 }
             }
             
-        print("====\(param.param)===")
+            print("====\(param.param)===")
+            let alert = UIAlertController.init(title: "组装的参数Param\n", message: "\(param.param)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction.init(title: "确定", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
         }else{
             print("==第一个错误的提示===\(param.firstErrorMsg ?? "")")
             self.tableView.reloadData()
         }
-       
+        
     }
     
     func getData() -> ZJJOption {
@@ -77,27 +80,27 @@ class NormalController: UIViewController {
     
     func showPopupView(optionModel:ZJJFormOptionModel) {
         
-        ZJJPopup.pickerView(optionModel: optionModel.option, title: "请选择性别") { (pickerView, popupView, model, btn) in
+        ZJJPopup.pickerView(optionModel: optionModel.option, title: "请选择性别") { [weak self](pickerView, popupView, model, btn) in
             if let genderModel = model as? ZJJGenderModel {
                 optionModel.option.selectModel = genderModel
                 optionModel.formText.value = genderModel.jj_optionValue ?? ""
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
     
     func getName() -> ZJJFormModel {
-       let inputModel = ZJJFormInputModel()
-       
-       let formModel =  ZJJFormModel.init(cellStyle: .input1, model: inputModel)
-
+        let inputModel = ZJJFormInputModel()
+        
+        let formModel =  ZJJFormModel.init(cellStyle: .input1, model: inputModel)
+        
         inputModel.verify = ZJJFormVerify.init(type: .editing,errorMsg: "只能输入英文字母", verifyValueBlock: { (value) -> (ZJJFormInputErrorType) in
             if value.verifyRegex(of: "^[a-zA-Z / s{0,1}]+$"){
                 return .none
             }
             return .lineAndLabel
         })
-    
+        
         inputModel.verify.isBeginEnditingHiddenError = true
         let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "姓名", value: "", serviceKey: "name")
         inputModel.placeholder = "请输入"
@@ -110,7 +113,7 @@ class NormalController: UIViewController {
     func getGender() -> ZJJFormModel {
         let optionModel = ZJJFormOptionModel.init()
         optionModel.option.optionArray = [ZJJGenderModel.init(id: 0),ZJJGenderModel.init(id: 1),ZJJGenderModel.init(id: 2)]
-//        optionModel.option.selectModel = optionModel.option.optionArray.first
+        //        optionModel.option.selectModel = optionModel.option.optionArray.first
         optionModel.formUI.isShowArrow = true
         
         var value = ""
@@ -120,13 +123,13 @@ class NormalController: UIViewController {
         
         optionModel.formText = ZJJFormText.init(requiredType: .requiredAndStar, key: "性别", value: value, serviceKey: "gender")
         optionModel.valueType = ZJJFormValueType.gender.rawValue
-        optionModel.formSelectCell { (model, cell) in
-            self.showPopupView(optionModel: optionModel)
+        optionModel.formSelectCell { [weak self](model, cell) in
+            self?.showPopupView(optionModel: optionModel)
         }
         optionModel.placeholder = "请选择性别"
         optionModel.verify = ZJJFormVerify.init(errorMsg: "请选择性别")
         let formModel = ZJJFormModel.init(cellStyle: .option, model: optionModel)
-
+        
         return formModel
     }
     
@@ -135,8 +138,8 @@ class NormalController: UIViewController {
         let formModel = ZJJFormModel.init(cellStyle: .value1, model: baseModel)
         let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "电话", value: "18866668888", serviceKey: "phone")
         baseModel.formText = textModel
-        baseModel.formSelectCell { (model, cell) in
-          
+        baseModel.formSelectCell { [weak self](model, cell) in
+            
         }
         return formModel
         
@@ -165,8 +168,8 @@ class NormalController: UIViewController {
         topViewConfig.confirmConfig.backgroundColor = .white
         let topView = ZJJPopupTopView.init(config: topViewConfig)
         
-        topView.clickConfirmButton { (btn) in
-            self.view.endEditing(true)
+        topView.clickConfirmButton { [weak self](btn) in
+            self?.view.endEditing(true)
         }
         inputModel.inputAccessoryView = topView
         
@@ -188,10 +191,10 @@ class NormalController: UIViewController {
         inputModel.keyboardType = .emailAddress
         inputModel.maxLength = 30
         inputModel.formSelectCell { (model, cell) in
-//            print("======\(model.formText.key)")
+            //            print("======\(model.formText.key)")
         }
         inputModel.formValueBeginEditing { (model, cell) in
-//            print("----\(model.formText.key)-----")
+            //            print("----\(model.formText.key)-----")
         }
         return formModel
         
@@ -228,8 +231,8 @@ class NormalController: UIViewController {
             }
             return .lineAndLabel
         })
-
+        inputModel.returnDoneType = .hiddenKeyboard //点击return按钮，隐藏键盘
         return formModel
     }
-
+    
 }

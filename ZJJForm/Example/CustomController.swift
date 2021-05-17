@@ -51,7 +51,7 @@ class CustomController: UIViewController {
         if param.isValid {
             
             for item in param.filterArray {
-
+                
                 if item.model.valueType == ZJJFormCustomValueType.compayAddress.rawValue {
                     //公司地址
                     if let optionModel = item.model as? CompayAddressInputModel {
@@ -67,25 +67,28 @@ class CustomController: UIViewController {
                 }
             }
             
-        print("====\(param.param)===")
+            print("====\(param.param)===")
+            let alert = UIAlertController.init(title: "组装的参数Param\n", message: "\(param.param)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction.init(title: "确定", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
         }else{
             print("==第一个错误的提示===\(param.firstErrorMsg ?? "")")
             self.tableView.reloadData()
         }
-       
+        
     }
     
     func getName() -> ZJJFormModel {
-       let inputModel = ZJJFormInputModel()
-       let formModel =  ZJJFormModel.init(cellStyle: .input1, model: inputModel)
+        let inputModel = ZJJFormInputModel()
+        let formModel =  ZJJFormModel.init(cellStyle: .input1, model: inputModel)
         inputModel.verify = ZJJFormVerify.init(type: .editing,errorMsg: "只能输入英文字母", verifyValueBlock: { (value) -> (ZJJFormInputErrorType) in
             if value.verifyRegex(of: "^[a-zA-Z / s{0,1}]+$"){
                 return .none
             }
             return .lineAndLabel
         })
-    
+        
         inputModel.verify.isBeginEnditingHiddenError = true
         let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "姓名", value: "", serviceKey: "name")
         inputModel.placeholder = "请输入"
@@ -109,8 +112,8 @@ class CustomController: UIViewController {
         
         optionModel.formText = ZJJFormText.init(requiredType: .requiredAndStar, key: "性别", value: value, serviceKey: "gender")
         optionModel.valueType = ZJJFormValueType.gender.rawValue
-        optionModel.formSelectCell { (model, cell) in
-            self.showPopupView(optionModel: optionModel)
+        optionModel.formSelectCell { [weak self](model, cell) in
+            self?.showPopupView(optionModel: optionModel)
         }
         optionModel.formUI = self.getFormUI()
         optionModel.placeholder = "请选择性别"
@@ -132,6 +135,7 @@ class CustomController: UIViewController {
         inputModel.formText = textModel
         
         let topViewConfig = ZJJPopupTopViewConfig.init()
+        topViewConfig.confirmConfig.margin = 15 //设置确定按钮距离右边的距离
         topViewConfig.cancelConfig.isHidden = true
         topViewConfig.titleConfig.text = "正在输入手机号"
         topViewConfig.backgroundColor = UIColor(red: 0.93, green: 0.93, blue: 0.93, alpha: 1)
@@ -140,8 +144,8 @@ class CustomController: UIViewController {
         topViewConfig.confirmConfig.backgroundColor = UIColor(red: 0.27, green: 0.51, blue: 0.98, alpha: 1)
         let topView = ZJJPopupTopView.init(config: topViewConfig)
         topView.jj_setCornersRadius(radius: 10, roundingCorners: [.topLeft,.topRight])
-        topView.clickConfirmButton { (btn) in
-            self.view.endEditing(true)
+        topView.clickConfirmButton { [weak self](btn) in
+            self?.view.endEditing(true)
         }
         inputModel.inputAccessoryView = topView
         return formModel
@@ -151,13 +155,13 @@ class CustomController: UIViewController {
     func getCompanyName() -> ZJJFormModel {
         let inputModel = ZJJFormInputModel()
         let formModel =  ZJJFormModel.init(cellStyle: .textView1, model: inputModel)
-         let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "公司名称", value: "", serviceKey: "companyName")
-         inputModel.placeholder = "请输入"
-         inputModel.maxLength = 60
-         inputModel.formText = textModel
-         inputModel.formUI = self.getFormUI()
-        inputModel.returnDoneType = .next
-         return formModel
+        let textModel = ZJJFormText.init(requiredType: .requiredAndStar, key: "公司名称", value: "", serviceKey: "companyName")
+        inputModel.placeholder = "请输入"
+        inputModel.maxLength = 60
+        inputModel.formText = textModel
+        inputModel.formUI = self.getFormUI()
+        inputModel.returnDoneType = .next //点击return按钮，跳到下个输入框
+        return formModel
     }
     
     func getCompanyEmail() -> ZJJFormModel {
@@ -170,12 +174,12 @@ class CustomController: UIViewController {
         inputModel.placeholder = "请输入公司邮箱地址"
         inputModel.keyboardType = .emailAddress
         inputModel.maxLength = 50
-        inputModel.returnDoneType = .hiddenKeyboard
+        inputModel.returnDoneType = .hiddenKeyboard //点击return按钮，隐藏键盘
         inputModel.formSelectCell { (model, cell) in
-//            print("======\(model.formText.key)")
+            //            print("======\(model.formText.key)")
         }
         inputModel.formValueBeginEditing { (model, cell) in
-//            print("----\(model.formText.key)-----")
+            //            print("----\(model.formText.key)-----")
         }
         inputModel.verify = ZJJFormVerify.init(type: .endEdit, errorMsg: "邮箱格式不对", verifyValueBlock: { [weak inputModel](value) -> (ZJJFormInputErrorType) in
             
@@ -206,7 +210,7 @@ class CustomController: UIViewController {
         inputModel.keyboardType = .emailAddress
         inputModel.maxLength = 50
         inputModel.option.optionArray = [AreaModel.init(optionValue: "广州", id: 123),AreaModel.init(optionValue: "深圳", id: 456),AreaModel.init(optionValue: "上海", id: 789),AreaModel.init(optionValue: "北京", id: 100)]
-        inputModel.returnDoneType = .hiddenKeyboard
+        inputModel.returnDoneType = .hiddenKeyboard //点击return按钮，隐藏键盘
         return formModel
     }
     
@@ -216,14 +220,14 @@ class CustomController: UIViewController {
         formUI.isShowArrow = true
         return formUI
     }
-
+    
     func showPopupView(optionModel:ZJJFormOptionModel) {
         
-        ZJJPopup.pickerView(optionModel: optionModel.option, title: "请选择性别") { (pickerView, popupView, model, btn) in
+        ZJJPopup.pickerView(optionModel: optionModel.option, title: "请选择性别") { [weak self](pickerView, popupView, model, btn) in
             if let genderModel = model as? ZJJGenderModel {
                 optionModel.option.selectModel = genderModel
                 optionModel.formText.value = genderModel.jj_optionValue ?? ""
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
@@ -270,8 +274,8 @@ extension CustomController:UITableViewDataSource,UITableViewDelegate{
         let identifier = model.cellStyle.cellIdentifier()
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         if let compayAddressCell = cell as? CompayAddressCell {
-            compayAddressCell.selectCity { (textField, model) in
-                self.showPopupView(textField: textField, compayAddressModel: model)
+            compayAddressCell.selectCity { [weak self](textField, model) in
+                self?.showPopupView(textField: textField, compayAddressModel: model)
             }
         }
         cell.backgroundColor = .white
@@ -318,5 +322,5 @@ extension CustomController:UITableViewDataSource,UITableViewDelegate{
         return view
     }
     
-
+    
 }

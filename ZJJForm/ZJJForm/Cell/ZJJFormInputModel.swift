@@ -33,6 +33,6 @@ class ZJJFormInputModel: ZJJFormBaseModel,ZJJFormBlockInputProtocol {
     var placeholder:String = "" //输入框占位文本
     var verify:ZJJFormVerify = ZJJFormVerify() //校验输入框的类
     var isConsecutiveSpaces:Bool = false //是否连续空格，如果连续两个空格以上，会导致多出一个点代替空格
-    var inputAccessoryView:UIView? 
+    var inputAccessoryView:UIView? //键盘上的工具栏
 }
 
