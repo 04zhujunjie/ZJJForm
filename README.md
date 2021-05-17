@@ -1,6 +1,5 @@
-# ZJJForm  
 
-### 效果图
+#### 效果图
 ![image](https://github.com/04zhujunjie/ZJJForm/blob/main/ZJJForm.gif)
 
 ### 特点：
@@ -9,8 +8,7 @@
 3、cell可以根据输入的文本长度，进行高度的自适应       
 4、cell的不同样式，只需要根据ZJJFormModel对象进行配置即可        
  
-### 表单用到的枚举：      
-   
+#### 表单用到的枚举：      
 ```
 enum ZJJFormCellStyle  {
     case `default`
@@ -76,7 +74,7 @@ enum ZJJFormInputVerifyType {
 
 ```
 
-### 表单文本基础设置对象
+#### 表单文本基础设置对象
 ```
 struct ZJJFormText {
     
@@ -88,7 +86,7 @@ struct ZJJFormText {
 
 ```
 
-### 表单Cell的UI样式对象
+#### 表单Cell的UI样式对象
 
 ```
 struct ZJJFormUI {
@@ -115,9 +113,9 @@ struct ZJJFormUI {
 ```
 
 
-### 如何使用
+#### 如何使用
 
-#### 一、创建ZJJFormModel对象，根据功能来设置model的对象（文本的是ZJJFormBaseModel对象，输入框的是ZJJFormInputModel对象，选项的是ZJJFormOptionModel对象）  
+1、创建ZJJFormModel对象，根据功能来设置model的对象（文本的是ZJJFormBaseModel对象，输入框的是ZJJFormInputModel对象，选项的是ZJJFormOptionModel对象）  
 ```
 class ZJJFormModel{
     var cellStyle:ZJJFormCellStyle = .default //cell的样式
@@ -129,9 +127,9 @@ class ZJJFormModel{
 }
 ```
 
-#### 二、对象的创建
+2、对象的创建
 
-1、文本显示，创建ZJJFormBaseModel对象
+1)、文本显示，创建ZJJFormBaseModel对象
 
 ```
 class ZJJFormBaseModel : NSObject,ZJJFormBlockBaseProtocol {
@@ -146,7 +144,7 @@ class ZJJFormBaseModel : NSObject,ZJJFormBlockBaseProtocol {
 }
 ```
 
-2、输入框显示，创建ZJJFormInputModel对象，其中verify属性是验证类
+2)、输入框显示，创建ZJJFormInputModel对象，其中verify属性是验证类
 
 ```
 class ZJJFormInputModel: ZJJFormBaseModel,ZJJFormBlockInputProtocol {
@@ -196,7 +194,7 @@ class ZJJFormVerify {
 }
 ```
 
-3、选项显示，创建ZJJFormOptionModel对象，可以结合ZJJPopup来使用，ZJJPopup的具体使用[GitHub地址](https://github.com/04zhujunjie/ZJJPopup)
+3)、选项显示，创建ZJJFormOptionModel对象，可以结合ZJJPopup来使用，ZJJPopup的具体使用[GitHub地址](https://github.com/04zhujunjie/ZJJPopup)
 
 ```
 class ZJJFormOptionModel:ZJJFormInputModel {
@@ -204,9 +202,9 @@ class ZJJFormOptionModel:ZJJFormInputModel {
 }
 ```
 
-#### 三、表单的UItableView建议使用ZJJFormTableView或者ZJJFormBaseTableView，设置表单的数据源dataArray
+ 3、表单的UItableView建议使用ZJJFormTableView或者ZJJFormBaseTableView，设置表单的数据源dataArray
 
-#### 四、参数的组装和验证，可以使用ZJJFormParam
+ 4、参数的组装和验证，可以使用ZJJFormParam
 
 ```
 struct ZJJFormParam {
@@ -219,7 +217,7 @@ struct ZJJFormParam {
 
 ```
 
-### 自定义cell
+#### 自定义cell
 
 1、文本显示，继承ZJJFormBaseCell，并调用以下方法
 
