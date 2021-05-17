@@ -16,7 +16,7 @@ class ZJJFormTextFieldBaseCell: ZJJFormInputBaseCell {
         // Initialization code
     }
     
-    func setFormTextFieldCellSubView(keyLabel:UILabel?,textField:UITextField? = nil,errorLabel:UILabel? = nil) {
+  open func setFormTextFieldCellSubView(keyLabel:UILabel?,textField:UITextField? = nil,errorLabel:UILabel? = nil) {
         self.setFormInputBaseCellSubView(keyLabel: keyLabel,formInputView: textField, errorLabel: errorLabel)
         self.formTextField = textField
         if let tf = textField {

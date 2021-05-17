@@ -8,7 +8,7 @@
 import UIKit
 
 struct ZJJFormParam {
-    var isValid:Bool = false
+    var isValid:Bool = false //全部的验证是否通过
     var firstErrorMsg:String? //第一个错误的信息提示语
     var param:[String:Any?] = [:] //组装的参数
     var filterArray:[ZJJFormModel] = [] //筛选出来的对象
